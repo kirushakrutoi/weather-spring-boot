@@ -8,6 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.validator.constraints.pl.NIP;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -30,6 +33,9 @@ public class User {
     @NotEmpty
     @Size(min = 2, max = 100, message = "Not valid password")
     private String password;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Location> locations;
 
     public User(String email, String password) {
         this.email = email;

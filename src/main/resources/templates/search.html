@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Weather</h1>
+
+<a th:text="${whether.getName()}">Name</a>
+<br/>
+<a th:text="'Temp: ' + ${whether.getMainInfo.getTemp()} +
+    ' Feels like: ' + ${whether.getMainInfo.getFeelsLike()}">Name</a>
+
+<form th:method="POST"
+      th:action="@{/whether/search?lat={lat}&lon={lon}&name={name}(lat=${whether.getCoord.getLat()}, lon=${whether.getCoord.getLon()}, name=${whether.getName()})}">
+    <button type="submit" class="btn btn-primary">Tracking</button>
+</form>
+
+</body>
+</html>
