@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
+    <label for="email">Enter email</label>
+    <input type="email" th:field="*{email}" id="email"/>
+    <div style="color : red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    <br/>
+
+    <label for="password">Enter password</label>
+    <input type="password" th:field="*{password}" id="password"/>
+    <div style="color : red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+    <br/>
+
+    <input type="submit" value="Sign up!">
+</form>
+</body>
+</html>
