@@ -1,0 +1,29 @@
+.button{
+    color: white;
+    text-decoration: none;
+}
+#logo {
+    color: white;
+}
+
+.submit {
+    text-align:center;
+}
+
+.button {
+
+}
+
+section {
+    background-image:         linear-gradient(
+                                rgba(0, 0, 0, 0.5),
+                                rgba(0, 0, 0, 0.5)
+                              ),
+                               url("/images/img_3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.form-label {
+    color: white;
+}

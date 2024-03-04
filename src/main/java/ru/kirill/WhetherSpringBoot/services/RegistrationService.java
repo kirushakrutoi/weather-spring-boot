@@ -25,10 +25,6 @@ public class RegistrationService {
 
         user.setPassword(password);
 
-        try {
-            userRepository.save(user);
-        } catch (DataAccessException e){
-            throw new UserNotCreatedException("This email is exist");
-        }
+        userRepository.save(user);
     }
 }

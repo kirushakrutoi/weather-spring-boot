@@ -34,6 +34,8 @@ public class UserValidation implements Validator {
     public void validate(Object target, Errors errors) {
         User user = (User) target;
 
+        System.out.println("1234512341234");
+
         try {
             userDetailsService.loadUserByUsername(user.getEmail());
         } catch (UsernameNotFoundException ignored){

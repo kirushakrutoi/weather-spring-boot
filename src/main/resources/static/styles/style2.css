@@ -1,0 +1,28 @@
+        span{
+            font-style: italic;
+        }
+
+        p{
+            font-size: 24px;
+            background-color: green;
+        }
+
+        .conteiner {
+            display: inline-block;
+            background-color: rgb(184, 184, 184);
+            text-align: center;
+            margin: 20px;
+            margin-top: 50px;
+        }
+
+        .outher{
+        }
+
+        .main{
+            text-align: center;
+        }
+
+        .conteiner>img {
+             max-width: 300px;
+        }
+

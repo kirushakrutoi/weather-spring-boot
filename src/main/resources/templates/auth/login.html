@@ -2,11 +2,56 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style5.css}">
+    <title>Login</title>
 </head>
 <body>
-<form name="f" method="POST" action="/process_login">
-    <!--        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+
+<header>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" id="logo">
+                <img th:src="@{/images/img.png}" alt="Logo" width="35" height="29" class="d-inline-block align-text-top">
+                Whether tracker
+            </a>
+            <form th:method="GET" th:action="@{/auth/registration}">
+                <button  class="btn btn-outline-light" type="submit">Sign up</button>
+            </form>
+        </div>
+    </nav>
+</header>
+
+<section>
+    <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+        <form th:method="POST" th:action="@{/process_login}">
+            <div class="mb-3">
+                <label for="username" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="username" aria-describedby="emailHelp" name="username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div th:if="${param.error}" style="color : red">
+                Incorrect name or password
+            </div>
+            <div class="submit">
+                <button type="submit" class="btn btn-outline-light">  Sign in  </button>
+            </div>
+
+        </form>
+    </div>
+
+</section>
+
+<footer>
+
+</footer>
+
+
+<!--<form name="f" method="POST" action="/process_login">
+    &lt;!&ndash;        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>&ndash;&gt;
 
     <label for="username">Email address</label>
     <input type="email" id="username" name="username">
@@ -19,7 +64,8 @@
 
     <div th:if="${param.error}" style="color : red">
         Incorrect name or password
-    </div>
-</form>
+    </div>-->
+<!--</form>-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

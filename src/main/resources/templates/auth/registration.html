@@ -2,21 +2,49 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style5.css}">
     <title>Title</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
-    <label for="email">Enter email</label>
-    <input type="email" th:field="*{email}" id="email"/>
-    <div style="color : red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
-    <br/>
 
-    <label for="password">Enter password</label>
-    <input type="password" th:field="*{password}" id="password"/>
-    <div style="color : red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
-    <br/>
+<header>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" id="logo">
+                <img th:src="@{/images/img.png}" alt="Logo" width="35" height="29" class="d-inline-block align-text-top">
+                Whether tracker
+            </a>
+            <form th:method="GET" th:action="@{/auth/login}">
+                <button  class="btn btn-outline-light" type="submit">Sign in</button>
+            </form>
+        </div>
+    </nav>
+</header>
 
-    <input type="submit" value="Sign up!">
-</form>
+<section>
+    <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+        <form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                <div style="color : red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+                <div style="color : red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+            </div>
+            <div class="submit">
+                <button type="submit" class="btn btn-outline-light">  Sign up  </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
 </body>
 </html>

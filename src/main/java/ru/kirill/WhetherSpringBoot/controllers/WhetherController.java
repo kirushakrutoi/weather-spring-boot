@@ -42,6 +42,7 @@ public class WhetherController {
 
         List<Location> locations = locationService.findByUser(user);
 
+        model.addAttribute("user", user);
         model.addAttribute("locations", whetherService.getWeatherByCoords(locations));
 
         return "mainmenu";
