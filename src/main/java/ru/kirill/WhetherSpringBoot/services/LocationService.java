@@ -8,6 +8,7 @@ import ru.kirill.WhetherSpringBoot.models.User;
 import ru.kirill.WhetherSpringBoot.repositories.LocationRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LocationService {
@@ -31,5 +32,15 @@ public class LocationService {
     @Transactional
     public void delete(User user, String name){
         locationRepository.deleteByUserAndName(user, name);
+    }
+
+    @Transactional(readOnly = true)
+    public Location findByName(String name){
+        return locationRepository.findFirstByName(name);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Location> findByUserAndName(User user, String name){
+        return locationRepository.findFirstByUserAndName(user, name);
     }
 }

@@ -11,7 +11,7 @@
 <header>
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid" id="conteiner">
-            <a class="navbar-brand" href="#" id="logo">
+            <a class="navbar-brand" th:href="@{/whether/mainmenu}" id="logo">
                 <img th:src="@{/images/img.png}" alt="Logo" width="35" height="29" class="d-inline-block align-text-top">
                 Whether tracker
             </a>
@@ -32,7 +32,9 @@
         <div th:if="locations ne null"
              class="col">
             <div class="card text-bg-dark" style="width: 18rem;" id="card">
-                <img th:src="@{/images/img.png}" class="card-img-top" alt="...">
+                <div class="top">
+                    <img th:src="@{/images/{img}.png(img=${weather.getWeather.get(0).getIcon()})}" class="card-img-top" alt="...">
+                </div>
                 <div class="card-body">
                     <h5 class="card-title" th:text="${weather.getName()}">Name</h5>
                 </div>
@@ -42,7 +44,7 @@
                     <li class="list-group-item" th:text="'Wind speed: ' + ${weather.getWind.getSpeed()}" >Wind</li>
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="card-link btn btn-outline-light"> More</a>
+                    <a th:href="@{/whether/{name}(name=${weather.getName()})}" class="card-link btn btn-outline-light"> More</a>
                     <form class="card-link btn" th:method="POST"
                           th:action="@{/whether/search?lat={lat}&lon={lon}&name={name}(lat=${weather.getCoord.getLat()}, lon=${weather.getCoord.getLon()}, name=${weather.getName()})}">
                         <button type="submit" class="card-link btn btn-outline-light">Tracking</button>

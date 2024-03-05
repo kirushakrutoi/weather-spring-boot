@@ -53,3 +53,13 @@ header {
     color: white;
 }
 
+.top {
+    text-align: center;
+}
+
+img {
+    max-width: 7em;
+    max-weight: 7em;
+    text-align: center;
+}
+

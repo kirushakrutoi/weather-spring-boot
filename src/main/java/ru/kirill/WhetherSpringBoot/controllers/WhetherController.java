@@ -59,8 +59,6 @@ public class WhetherController {
             return "search";
         }
 
-
-
         LocationDTO locationDTO = OLocation.get();
         model.addAttribute("weather", locationDTO);
         model.addAttribute("user", user);
@@ -85,9 +83,28 @@ public class WhetherController {
         location.setName(cityName);
         location.setUser(user);
 
+        if(locationService.findByUserAndName(user, location.getName()).isPresent()){
+            return "redirect:/whether/mainmenu";
+        }
+
         locationService.save(location);
 
         return "redirect:/whether/mainmenu";
+    }
+
+    @GetMapping("/{name}")
+    public String locationPage(@PathVariable("name") String name,
+                               Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        User user = userDetails.getUser();
+
+        model.addAttribute("user", user);
+        model.addAttribute("weather", whetherService.getWeatherByCityName(name).get());
+
+        return "location";
     }
 
     @PostMapping("/delete")
