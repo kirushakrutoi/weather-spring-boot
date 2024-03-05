@@ -27,4 +27,9 @@ public class LocationService {
     public List<Location> findByUser(User user){
         return locationRepository.findByUser(user);
     }
+
+    @Transactional
+    public void delete(User user, String name){
+        locationRepository.deleteByUserAndName(user, name);
+    }
 }

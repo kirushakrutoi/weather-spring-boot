@@ -34,7 +34,7 @@ public class User {
     @Size(min = 2, max = 100, message = "Not valid password")
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Location> locations;
 
     public User(String email, String password) {

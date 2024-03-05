@@ -33,7 +33,7 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div th:each="weather : ${locations}" th:if="locations ne null"
                  class="col">
-                <div class="card text-bg-dark" style="width: 18rem;" id="card">
+                <div class="card text-bg-dark" style="width: 18rem;">
                     <img th:src="@{/images/img.png}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${weather.getName()}">Name</h5>
@@ -45,7 +45,10 @@
                     </ul>
                     <div class="card-body">
                         <a href="#" class="card-link btn btn-outline-light"> More</a>
-                        <a href="#" class="card-link btn btn-outline-light">Delete</a>
+                        <form class="card-link btn" th:method="POST" th:action="@{/whether/delete?name={name}(name=${weather.getName()})}">
+                            <button type="submit" class="card-link btn btn-outline-light">Delete</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

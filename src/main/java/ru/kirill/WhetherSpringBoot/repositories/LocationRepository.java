@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface LocationRepository extends JpaRepository<Location, Integer> {
     public List<Location> findByUser(User user);
+    public void deleteByUserAndName(User user, String name);
 }

@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LocationDTO {
+    private int id;
 
     private String name;
 

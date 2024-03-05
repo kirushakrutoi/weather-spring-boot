@@ -5,10 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.kirill.WhetherSpringBoot.models.DTOs.Location.LocationDTO;
 import ru.kirill.WhetherSpringBoot.models.Location;
 import ru.kirill.WhetherSpringBoot.models.User;
@@ -52,13 +49,21 @@ public class WhetherController {
     public String searchWhetherPage(@RequestParam("city") String cityName, Model model){
         Optional<LocationDTO> OLocation = whetherService.getWeatherByCityName(cityName);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        User user = userDetails.getUser();
+
         if(OLocation.isEmpty()){
             model.addAttribute("whether", null);
             return "search";
         }
 
+
+
         LocationDTO locationDTO = OLocation.get();
-        model.addAttribute("whether", locationDTO);
+        model.addAttribute("weather", locationDTO);
+        model.addAttribute("user", user);
         return "search";
 
     }
@@ -81,6 +86,19 @@ public class WhetherController {
         location.setUser(user);
 
         locationService.save(location);
+
+        return "redirect:/whether/mainmenu";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam("name") String name){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        User user = userDetails.getUser();
+
+        locationService.delete(user, name);
 
         return "redirect:/whether/mainmenu";
     }
