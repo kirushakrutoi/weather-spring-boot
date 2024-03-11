@@ -59,36 +59,14 @@ public class WhetherService {
 
     public List<LocationDTO> getWeatherByCoords(List<Location> locations){
         List<LocationDTO> locationDtoList = new ArrayList<>();
-        try {
-            for(Location location : locations) {
-                String lon = location.getLongitude().toString();
-                String lat = location.getLatitude().toString();
 
-                HttpClient client = HttpClient.newHttpClient();
+        for(Location location : locations) {
+            LocationDTO locationDto = getWeatherByCoord(location).get();
 
-                URI uri = new URI("https://api.openweathermap.org/data/2.5/weather?" +
-                        "lat=" + lat +
-                        "&lon=" + lon
-                        + "&units=metric"
-                        + "&appid=" + WEATHER_API_TOKEN);
-
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(uri)
-                        .GET()
-                        .build();
-
-                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-                String json = response.body();
-
-                LocationDTO locationDto = objectMapper.readValue(json, LocationDTO.class);
-
-                locationDtoList.add(locationDto);
-            }
-            return locationDtoList;
-        } catch (URISyntaxException | InterruptedException | IOException e) {
-            return new ArrayList<>();
+            locationDtoList.add(locationDto);
         }
+
+        return locationDtoList;
     }
 
     public Optional<LocationDTO> getWeatherByCoord(Location location) {

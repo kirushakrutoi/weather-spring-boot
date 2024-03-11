@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  weather:
+    image: whether:0.0.1-SNAPSHOT
+    container_name: myapp
+    environment:
+      SPRING_DB_URL: jdbc:postgresql://db:5432/WhetherProject
+      SPRING_DB_USER: kirill
+      SPRING_DB_PASSWORD: 12345
+      HIBERNATE_DDL_AUTO: create-drop
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_DB: WhetherProject
+      POSTGRES_USER: kirill
+      POSTGRES_PASSWORD: 12345
+    ports:
+      - 5432

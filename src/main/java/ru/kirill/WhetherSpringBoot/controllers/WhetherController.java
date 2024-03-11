@@ -1,5 +1,6 @@
 package ru.kirill.WhetherSpringBoot.controllers;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -32,10 +33,7 @@ public class WhetherController {
     @GetMapping("/mainmenu")
     public String getHelloPage(Model model){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        User user = userDetails.getUser();
+        User user = getUser();
 
         List<Location> locations = locationService.findByUser(user);
 
@@ -49,10 +47,7 @@ public class WhetherController {
     public String searchWhetherPage(@RequestParam("city") String cityName, Model model){
         Optional<LocationDTO> OLocation = whetherService.getWeatherByCityName(cityName);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        User user = userDetails.getUser();
+        User user = getUser();
 
         if(OLocation.isEmpty()){
             model.addAttribute("whether", null);
@@ -73,10 +68,7 @@ public class WhetherController {
 
         Location location = new Location();
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        User user = userDetails.getUser();
+        User user = getUser();
 
         location.setLatitude(lat);
         location.setLongitude(lon);
@@ -96,10 +88,7 @@ public class WhetherController {
     public String locationPage(@PathVariable("name") String name,
                                Model model){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        User user = userDetails.getUser();
+        User user = getUser();
 
         model.addAttribute("user", user);
         model.addAttribute("weather", whetherService.getWeatherByCityName(name).get());
@@ -110,13 +99,17 @@ public class WhetherController {
     @PostMapping("/delete")
     public String delete(@RequestParam("name") String name){
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
-        User user = userDetails.getUser();
+        User user = getUser();
 
         locationService.delete(user, name);
 
         return "redirect:/whether/mainmenu";
+    }
+
+    private User getUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+        return userDetails.getUser();
     }
 }

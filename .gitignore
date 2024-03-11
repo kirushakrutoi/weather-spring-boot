@@ -3,7 +3,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-/src/main/resources/application.properties
+/src/main/resources/application.yml
 /src/main/resources/templates/test
 /src/main/java/ru/kirill/WhetherSpringBoot/controllers/TestController.java
 ### STS ###

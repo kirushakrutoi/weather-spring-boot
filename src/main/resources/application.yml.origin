@@ -1,0 +1,19 @@
+spring:
+  sql:
+    init:
+      mode: never
+  datasource:
+    username: ${SPRING_DB_USER}
+    password: ${SPRING_DB_PASSWORD}
+    url: ${SPRING_DB_URL}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+
+
+WHETHER_API_TOKEN:
