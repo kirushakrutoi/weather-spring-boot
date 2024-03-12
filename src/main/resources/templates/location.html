@@ -11,11 +11,11 @@
 <header>
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div class="container-fluid" id="conteiner">
-            <a class="navbar-brand" th:href="@{/whether/mainmenu}" id="logo">
+            <a class="navbar-brand" th:href="@{/weather/mainmenu}" id="logo">
                 <img th:src="@{/images/img.png}" alt="Logo" width="35" height="29" class="d-inline-block align-text-top">
                 Whether tracker
             </a>
-            <form class="d-flex" role="search" th:method="GET" th:action="@{/whether/search}">
+            <form class="d-flex" role="search" th:method="GET" th:action="@{/weather/search}">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="City name" name="city">
                 <button  class="btn btn-outline-light" type="submit">Search</button>
             </form>
@@ -43,7 +43,7 @@
                             <p class="card-text" th:text="'Humidity: ' + ${weather.getMainInfo.getHumidity()} + '%' +
                                 ' Pressure: ' + ${weather.getMainInfo.getPressure()} + 'p'"></p>
                             <p class="card-text" th:text="'Wind: ' + ${weather.getWind.getSpeed()} + 'm/s'"></p>
-                            <form class="card-link btn" th:method="Get" th:action="@{/whether/mainmenu}">
+                            <form class="card-link btn" th:method="Get" th:action="@{/weather/mainmenu}">
                                 <button type="submit" class="card-link btn btn-outline-light">Main menu</button>
                             </form>
                         </div>
