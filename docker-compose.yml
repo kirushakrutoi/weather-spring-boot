@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   weather:
-    image: whether:0.0.1-SNAPSHOT
+    build: ./
     container_name: myapp
     environment:
       SPRING_DB_URL: jdbc:postgresql://db:5432/WhetherProject
