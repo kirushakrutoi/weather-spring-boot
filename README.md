@@ -46,6 +46,7 @@
   <li> Скопировать репозиторий
   <li> В файле application.yml утсановить свой токен с сайта https://openweathermap.org/
   <li> Зайти в папку репозитория: cd Weather
+  <li> Создать jar архив Windows: ./mvnw package, Linux: ./mvn package </li>
   <li> Запустуть фаил docker-compose.yml: docker compose up</li>
   <li> Приложение доступно по адресу: localhost:8080/auth/login </li>
 </ul>

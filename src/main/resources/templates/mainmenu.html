@@ -48,7 +48,7 @@
                     </ul>
                     <div class="card-body">
                         <a th:href="@{/weather/{name}(name=${weather.getName()})}" class="card-link btn btn-outline-light"> More</a>
-                        <form class="card-link btn" th:method="POST" th:action="@{/whether/delete?name={name}(name=${weather.getName()})}">
+                        <form class="card-link btn" th:method="POST" th:action="@{/weather/delete?name={name}(name=${weather.getName()})}">
                             <button type="submit" class="card-link btn btn-outline-light">Delete</button>
                         </form>
 
